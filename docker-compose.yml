@@ -1,0 +1,19 @@
+services:
+  openvpn:
+    privileged: true
+    build: ./
+    volumes:
+      - config:/config
+      - downloads:/downloads
+    ports:
+      - 8080:8080
+      - 8999:8999
+      - 8999:8999/udp
+    environment:
+      VPN_ENABLED: "yes"
+      LAN_NETWORK: "192.168.1.0/24"
+      NAME_SERVERS: "8.8.8.8,8.8.4.4"
+
+volumes:
+  config:
+  downloads:
