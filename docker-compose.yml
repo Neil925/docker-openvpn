@@ -10,15 +10,15 @@ services:
         source: app
         target: /app
       - type: bind
-        source: /run/media/neil/F71C-FB61/downloads/
+        source: /mnt/bighardboi/downloads/
         target: /downloads
     ports:
       - 8080:8080
       - 8080:8080/udp
       - 8999:8999
       - 8999:8999/udp
-      - 9696:9696
-      - 9696:9696/udp
+      - 9117:9117
+      - 9117:9117/udp
     environment:
       VPN_ENABLED: "yes"
       LAN_NETWORK: "192.168.1.0/24"

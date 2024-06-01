@@ -19,16 +19,14 @@ RUN apt-get update \
 
 # Install Prowlarr
 RUN \
-  echo "**** install prowlarr ****" && \
-  mkdir -p /app/prowlarr/bin && \
-  curl -o \
-    /tmp/prowlarr.tar.gz -L \
-    "https://prowlarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=x64" && \
-  tar xzf \
-    /tmp/prowlarr.tar.gz -C \
-    /app/prowlarr/bin --strip-components=1 && \
-  echo "**** cleanup ****" && \
-  rm -rf /tmp/*
+  echo "**** install jackett ****" && \
+  mkdir -p /app/jackett/ && \
+  cd /app/jackett/ && \
+  f=Jackett.Binaries.LinuxAMDx64.tar.gz && \
+  wget -Nc https://github.com/Jackett/Jackett/releases/latest/download/"$f" && \
+  tar -xzf "$f" && \
+  rm -f "$f" && \
+  mv Jackett*/ ./bin
 
 # Add configuration and scripts
 ADD openvpn/ /etc/openvpn/
@@ -41,7 +39,7 @@ EXPOSE 8080
 EXPOSE 8080/udp
 EXPOSE 8999
 EXPOSE 8999/udp
-EXPOSE 9696
-EXPOSE 9696/udp
+EXPOSE 9117
+EXPOSE 9117/udp
 
 CMD ["/bin/bash", "/etc/openvpn/start.sh"]

@@ -2,3 +2,5 @@
 openvpnopt/credentials.conf
 
 *.ovpn
+
+openvpn/credentials.conf

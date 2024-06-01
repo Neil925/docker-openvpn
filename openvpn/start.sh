@@ -159,8 +159,8 @@ if [[ -z "${PGID}" ]]; then
 	export PGID="root"
 fi
 
-echo "[info] Starting Prowlarr in background..." | ts '%Y-%m-%d %H:%M:%.S'
-$(/app/prowlarr/bin/Prowlarr &> /app/prowlarr/bin/log.txt &)
+echo "[info] Starting Jackett in background..." | ts '%Y-%m-%d %H:%M:%.S'
+$(/app/jackett/bin/jackett &> /app/jackett/bin/log.txt &)
 
 if [[ $VPN_ENABLED == "yes" ]]; then
 	echo "[info] Starting OpenVPN..." | ts '%Y-%m-%d %H:%M:%.S'
