@@ -1,0 +1,19 @@
+[Unit]
+Description=docker-openvpn Daemon
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=cd /opt/docker-openvpn && docker-compose up
+NonBlocking=true
+KillMode=process
+Restart=on-failure
+RestartSec=5
+# centos7 RuntimeDirectory ignored
+# RuntimeDirectory=nordvpn
+# RuntimeDirectoryMode=0750
+# User=root
+Group=docker
+
+[Install]
+WantedBy=default.target
