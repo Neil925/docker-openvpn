@@ -10,7 +10,7 @@ services:
         source: app
         target: /app
       - type: bind
-        source: /mnt/bighardboi/downloads/
+        source: /mnt/barracuda/downloads/
         target: /downloads
     ports:
       - 8080:8080

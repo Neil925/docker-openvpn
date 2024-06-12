@@ -159,9 +159,6 @@ if [[ -z "${PGID}" ]]; then
 	export PGID="root"
 fi
 
-echo "[info] Starting Jackett in background..." | ts '%Y-%m-%d %H:%M:%.S'
-$(/app/jackett/bin/jackett &> /app/jackett/bin/log.txt &)
-
 if [[ $VPN_ENABLED == "yes" ]]; then
 	echo "[info] Starting OpenVPN..." | ts '%Y-%m-%d %H:%M:%.S'
 	cd /config/openvpn
@@ -169,7 +166,10 @@ if [[ $VPN_ENABLED == "yes" ]]; then
 	# give openvpn some time to connect
 	sleep 5
 	#exec /bin/bash /etc/openvpn/openvpn.init start &
-	exec /bin/bash /etc/qbittorrent/iptables.sh
+	exec /bin/bash /etc/qbittorrent/iptables.sh &
 else
-	exec /bin/bash /etc/qbittorrent/start.sh
+	exec /bin/bash /etc/qbittorrent/start.sh &
 fi
+
+echo "[info] Starting Jackett in background..." | ts '%Y-%m-%d %H:%M:%.S'
+exec /bin/bash /etc/jackett/start.sh

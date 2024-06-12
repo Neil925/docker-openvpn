@@ -17,7 +17,7 @@ RUN apt-get update \
     && apt-get install -y qbittorrent-nox openvpn curl moreutils net-tools dos2unix kmod iptables ipcalc unrar wget \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install Prowlarr
+# Install Jackett
 RUN \
   echo "**** install jackett ****" && \
   mkdir -p /app/jackett/ && \
@@ -31,8 +31,9 @@ RUN \
 # Add configuration and scripts
 ADD openvpn/ /etc/openvpn/
 ADD qbittorrent/ /etc/qbittorrent/
+ADD jackett /etc/jackett/
 
-RUN chmod +x /etc/qbittorrent/*.sh /etc/qbittorrent/*.init /etc/openvpn/*.sh
+RUN chmod +x /etc/qbittorrent/*.sh /etc/qbittorrent/*.init /etc/openvpn/*.sh /etc/jacket/*.sh /etc/jackett/*.init
 
 # Expose ports and run
 EXPOSE 8080
