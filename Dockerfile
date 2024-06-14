@@ -33,7 +33,7 @@ ADD openvpn/ /etc/openvpn/
 ADD qbittorrent/ /etc/qbittorrent/
 ADD jackett /etc/jackett/
 
-RUN chmod +x /etc/qbittorrent/*.sh /etc/qbittorrent/*.init /etc/openvpn/*.sh /etc/jacket/*.sh /etc/jackett/*.init
+RUN chmod +x /etc/qbittorrent/*.sh /etc/qbittorrent/*.init /etc/openvpn/*.sh /etc/jackett/*.sh /etc/jackett/*.init
 
 # Expose ports and run
 EXPOSE 8080
